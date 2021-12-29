@@ -6,39 +6,31 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/21 09:39:06 by user42            #+#    #+#              #
-#    Updated: 2021/12/21 10:12:52 by user42           ###   ########.fr        #
+#    Updated: 2021/12/29 15:31:51 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC		=	gcc
 CFLAGS =	-Wall -Wextra -Werror
-SRC		=	./srcs/ft_philo.c
+SRC		=	srcs/ft_philo.c srcs/init.c srcs/philo_utils_1.c srcs/philo_utils_2.c \
+			srcs/routine.c 
 OBJ 	=	$(SRC:%.c=%.o)
 NAME 	=	philo
-LIBFT	=	libft.a
 
 all : $(NAME)
 
-$(NAME):	$(LIBFT) $(OBJ)
-			@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) ./srcs/libft/$(LIBFT)
+$(NAME):	$(OBJ)
+			$(CC) $(CFLAGS) ${SRC} -lpthread -o $(NAME)
 			@echo "\n\033[32m[✓]\033[0m		[$(NAME) compiled]"
-
-$(LIBFT):	
-			@make --no-print-directory -C ./srcs/libft
-			@cp ./srcs/libft/libft.a ./srcs/$(LIBFT)
 
 clean:
 			@rm -f *.o
-			@rm -f ./srcs/*/*.o
-			@make --no-print-directory -C ./srcs/libft clean
+			@rm -f ./srcs/*.o
 
 fclean:		clean
-			@make --no-print-directory -C ./srcs/libft fclean
-			@rm -f $(NAME) a.aout srcs/${LIBFT}
+			@rm -f $(NAME) a.aout
 			
 re:			fclean all
 		
-exec:		all
-			@echo "\033[32m[✓]\033[0m		[$(NAME) executed]\n"
-			@./$(NAME)
+.PHONY:		all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:58:39 by user42            #+#    #+#             */
-/*   Updated: 2021/12/21 10:55:21 by user42           ###   ########.fr       */
+/*   Updated: 2021/12/29 15:54:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,72 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <stddef.h>
 # include <pthread.h>
 
-# include "../srcs/libft/libft.h"
-
-typedef struct s_info
+typedef enum e_bool
 {
-	int         nb_total;
-	int         time_to_die;
-	int         time_to_eat;
-	int         time_to_sleep;
-	int         must_eat;
-}				t_info;
+	False,
+	True
+}	t_bool;
 
-typedef struct	s_philo
+typedef struct				s_info
 {
-	t_info		info;
-	int			nb_philo;
-}				t_philo;
+	int						nb_total;
+	int						time_to_die;
+	int						time_to_eat;
+	int						time_to_sleep;
+	int						must_eat;
+	long int				start_t;
+	pthread_mutex_t			finish;
+	pthread_mutex_t			eat_time;
+	pthread_mutex_t			end;
+	int                   	dead;
+}							t_info;
 
-int				ft_error(char *msg);
+typedef struct				s_thread
+{
+	pthread_t				thread_id;
+	pthread_t				thread_death;
+	pthread_mutex_t			l_fork;
+	pthread_mutex_t			*r_fork;
+	t_info					*p_info;
+	int						id;
+	long int				ms_eat;
+	long int				nb_eat;
+	int						end;
+}							t_thread;
 
+typedef struct				s_philo
+{
+	t_info					info;
+	t_thread				*thread;
+}							t_philo;
+
+/*
+**	Main
+*/
+int							ft_error(char *msg);
+
+/*
+** Utils
+*/
+int							ft_atoi(const char *str);
+long int					get_time();
+void						ft_usleep(long int time);
+int     					check_death(t_thread *thread, int stop);
+void    					display_message(char *msg, t_thread *thread);
+
+/*
+**	Init
+*/
+
+int							init_info(t_philo *philo, int argc, char **argv);
+int 						init_philo(t_philo  *philo);
+int							init_thread(t_philo *philo);
+
+/*
+**	routine
+*/
+void						routine(t_thread *thread);
 # endif
