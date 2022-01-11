@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:58:39 by user42            #+#    #+#             */
-/*   Updated: 2021/12/29 15:54:13 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/11 16:30:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct				s_info
 	pthread_mutex_t			finish;
 	pthread_mutex_t			eat_time;
 	pthread_mutex_t			end;
+	pthread_mutex_t			write_mutex;
+	int						nb_finish;
 	int                   	dead;
 }							t_info;
 
@@ -62,13 +64,16 @@ typedef struct				s_philo
 /*
 **	Main
 */
+
 int							ft_error(char *msg);
+void						ft_stop(t_philo *philo);
 
 /*
 ** Utils
 */
+
 int							ft_atoi(const char *str);
-long int					get_time();
+long int					get_time(void);
 void						ft_usleep(long int time);
 int     					check_death(t_thread *thread, int stop);
 void    					display_message(char *msg, t_thread *thread);
@@ -84,5 +89,12 @@ int							init_thread(t_philo *philo);
 /*
 **	routine
 */
+
 void						routine(t_thread *thread);
+
+/*
+**	thread
+*/
+
+void						*thread(void *data);
 # endif

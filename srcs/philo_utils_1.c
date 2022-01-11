@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:21:52 by user42            #+#    #+#             */
-/*   Updated: 2021/12/28 10:39:36 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/11 16:28:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,24 @@ int	ft_atoi(const char *str)
 	return (sign * ret);
 }
 
-long int	get_time()
+long int	get_time(void)
 {
-	long int   		time;
-	struct timeval	curent_time;;
+	long int			time;
+	struct timeval		current_time;
 
 	time = 0;
-	if (gettimeofday(&curent_time, NULL) == -1)
-		return (ft_error("ERROR: Gettimeofday return -1"));
-	time = (curent_time.tv_sec * 1000) + (curent_time.tv_usec / 1000);
+	if (gettimeofday(&current_time, NULL) == -1)
+		ft_error("Gettimeofday returned -1\n");
+	time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
 	return (time);
 }
 
 void	ft_usleep(long int time)
 {
-	long int	start;
+	long int	start_time;
 
-	start = 0;
-	start = get_time();
-	while ((get_time() - start) < time)
+	start_time = 0;
+	start_time = get_time();
+	while ((get_time() - start_time) < time)
 		usleep(time / 10);
 }
