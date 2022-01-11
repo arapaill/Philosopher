@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/21 09:39:06 by user42            #+#    #+#              #
-#    Updated: 2021/12/29 15:31:51 by user42           ###   ########.fr        #
+#    Updated: 2021/12/31 15:23:47 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 CC		=	gcc
 CFLAGS =	-Wall -Wextra -Werror
 SRC		=	srcs/ft_philo.c srcs/init.c srcs/philo_utils_1.c srcs/philo_utils_2.c \
-			srcs/routine.c 
+			srcs/routine.c srcs/thread.c srcs/ft_stop.c
 OBJ 	=	$(SRC:%.c=%.o)
 NAME 	=	philo
 
