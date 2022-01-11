@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:57:51 by user42            #+#    #+#             */
-/*   Updated: 2021/12/31 15:23:00 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/11 21:02:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	main(int argc, char **argv)
 		free(philo.thread);
 		return (-1);
 	}
-	return (0);
 	ft_stop(&philo);
+	return (0);
 }

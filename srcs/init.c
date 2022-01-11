@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 12:06:21 by user42            #+#    #+#             */
-/*   Updated: 2022/01/11 16:39:30 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/11 17:11:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	init_thread(t_philo *philo)
 	while (i < philo->info.nb_total)
 	{
 		philo->thread[i].p_info = &philo->info;
-		if (pthread_create(&philo->thread[i].thread_id, NULL, thread, &philo->thread[i]) != 0)
+		if (pthread_create(&philo->thread[i].thread_id, NULL, &thread, &philo->thread[i]) != 0)
 			return (ft_error("ERROR: pthread_create != 0\n"));
 		i++;
 	}
