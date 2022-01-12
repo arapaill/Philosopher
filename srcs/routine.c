@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:29:27 by user42            #+#    #+#             */
-/*   Updated: 2022/01/12 11:29:47 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/12 13:22:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_take_fork_and_eat(t_thread *thread)
 	pthread_mutex_unlock(&thread->p_info->write_mutex);
 	if (!thread->r_fork)
 	{
-		ft_usleep(thread->p_info->time_to_die * 2);
+		ft_usleep(thread->p_info->time_to_die * 2, thread->p_info);
 		return ;
 	}
 	pthread_mutex_lock(thread->r_fork);
@@ -33,7 +33,7 @@ void	ft_take_fork_and_eat(t_thread *thread)
 	pthread_mutex_lock(&thread->p_info->eat_time);
 	thread->ms_eat = get_time();
 	pthread_mutex_unlock(&thread->p_info->eat_time);
-	ft_usleep(thread->p_info->time_to_eat);
+	ft_usleep(thread->p_info->time_to_eat, thread->p_info);
 	pthread_mutex_unlock(&thread->l_fork);
 	pthread_mutex_unlock(thread->r_fork);
 }
@@ -43,7 +43,7 @@ void	ft_sleep(t_thread *thread)
 	pthread_mutex_lock(&thread->p_info->write_mutex);
 	display_message("is sleeping\n", thread);
 	pthread_mutex_unlock(&thread->p_info->write_mutex);
-	ft_usleep(thread->p_info->time_to_sleep);
+	ft_usleep(thread->p_info->time_to_sleep, thread->p_info);
 	pthread_mutex_lock(&thread->p_info->write_mutex);
 	display_message("is thinking\n", thread);
 	pthread_mutex_unlock(&thread->p_info->write_mutex);

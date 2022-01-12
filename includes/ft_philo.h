@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:58:39 by user42            #+#    #+#             */
-/*   Updated: 2022/01/11 22:31:54 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/12 13:18:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void						ft_stop(t_philo *philo);
 
 int							ft_atoi(const char *str);
 long int					get_time(void);
-void						ft_usleep(long int time);
+void						ft_usleep(long int time, t_info *info);
 int							check_death(t_thread *thread, int stop);
 void						display_message(char *msg, t_thread *thread);
 

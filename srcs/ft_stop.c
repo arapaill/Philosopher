@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 15:08:57 by user42            #+#    #+#             */
-/*   Updated: 2022/01/11 22:33:25 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/12 13:21:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_stop(t_philo *philo)
 
 	i = -1;
 	while (!check_death_philo(philo))
-		ft_usleep(1);
+		ft_usleep(1, &philo->info);
 	while (++i < philo->info.nb_total)
 		pthread_join(philo->thread[i].thread_id, NULL);
 	pthread_mutex_destroy(&philo->info.write_mutex);

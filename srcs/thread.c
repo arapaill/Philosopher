@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:59:48 by user42            #+#    #+#             */
-/*   Updated: 2022/01/12 11:30:37 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/12 13:21:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_end(void *data)
 	t_thread		*thread;
 
 	thread = (t_thread *)data;
-	ft_usleep(thread->p_info->time_to_die + 1);
+	ft_usleep(thread->p_info->time_to_die + 1, thread->p_info);
 	pthread_mutex_lock(&thread->p_info->eat_time);
 	pthread_mutex_lock(&thread->p_info->finish);
 	if (!check_death(thread, 0) && !thread->end
@@ -42,7 +42,7 @@ void	*thread(void *data)
 
 	thread = (t_thread *)data;
 	if (thread->id % 2 == 0)
-		ft_usleep(thread->p_info->time_to_eat / 10);
+		ft_usleep(thread->p_info->time_to_eat / 10, thread->p_info);
 	while (!check_death(thread, 0))
 	{
 		pthread_create(&thread->thread_death, NULL, &ft_end, data);
