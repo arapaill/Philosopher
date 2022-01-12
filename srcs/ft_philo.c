@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:57:51 by user42            #+#    #+#             */
-/*   Updated: 2022/01/11 21:02:32 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/11 22:32:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
 
-int		ft_error(char *msg)
+int	ft_error(char *msg)
 {
 	printf("%s", msg);
 	return (-1);
@@ -20,7 +20,7 @@ int		ft_error(char *msg)
 
 int	main(int argc, char **argv)
 {
-	t_philo  philo;
+	t_philo	philo;
 
 	if (init_info(&philo, argc, argv) == -1)
 		return (-1);

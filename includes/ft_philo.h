@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:58:39 by user42            #+#    #+#             */
-/*   Updated: 2022/01/11 16:30:36 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/11 22:31:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef enum e_bool
 	True
 }	t_bool;
 
-typedef struct				s_info
+typedef struct s_info
 {
 	int						nb_total;
 	int						time_to_die;
@@ -39,10 +39,10 @@ typedef struct				s_info
 	pthread_mutex_t			end;
 	pthread_mutex_t			write_mutex;
 	int						nb_finish;
-	int                   	dead;
+	int						dead;
 }							t_info;
 
-typedef struct				s_thread
+typedef struct s_thread
 {
 	pthread_t				thread_id;
 	pthread_t				thread_death;
@@ -55,7 +55,7 @@ typedef struct				s_thread
 	int						end;
 }							t_thread;
 
-typedef struct				s_philo
+typedef struct s_philo
 {
 	t_info					info;
 	t_thread				*thread;
@@ -75,15 +75,15 @@ void						ft_stop(t_philo *philo);
 int							ft_atoi(const char *str);
 long int					get_time(void);
 void						ft_usleep(long int time);
-int     					check_death(t_thread *thread, int stop);
-void    					display_message(char *msg, t_thread *thread);
+int							check_death(t_thread *thread, int stop);
+void						display_message(char *msg, t_thread *thread);
 
 /*
 **	Init
 */
 
 int							init_info(t_philo *philo, int argc, char **argv);
-int 						init_philo(t_philo  *philo);
+int							init_philo(t_philo *philo);
 int							init_thread(t_philo *philo);
 
 /*
@@ -97,4 +97,5 @@ void						routine(t_thread *thread);
 */
 
 void						*thread(void *data);
-# endif
+
+#endif

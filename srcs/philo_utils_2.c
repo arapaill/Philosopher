@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 10:41:34 by user42            #+#    #+#             */
-/*   Updated: 2022/01/11 20:54:46 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/12 11:29:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
 
-void    display_message(char *msg, t_thread *thread)
+void	display_message(char *msg, t_thread *thread)
 {
 	long int	time;
 
@@ -25,7 +25,7 @@ void    display_message(char *msg, t_thread *thread)
 	}
 }
 
-int     check_death(t_thread *thread, int stop)
+int	check_death(t_thread *thread, int stop)
 {
 	pthread_mutex_lock(&thread->p_info->end);
 	if (stop)
