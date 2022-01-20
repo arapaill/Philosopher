@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 10:41:34 by user42            #+#    #+#             */
-/*   Updated: 2022/01/12 17:59:55 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/20 15:28:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	display_message(char *msg, t_thread *thread)
 	time = get_time() - thread->p_info->start_t;
 	pthread_mutex_lock(&thread->p_info->write_mutex);
 	if (!check_death(thread, 0) && time >= 0 && time <= 2147483647)
-	{
-		printf("[%ld] ", time);
-		printf("Philo nb: %d %s", thread->id, msg);
-	}
+		printf("[%ld] Philo nb: %d %s ", time, thread->id, msg);
 	pthread_mutex_unlock(&thread->p_info->write_mutex);
 }
 
