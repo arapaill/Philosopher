@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:29:27 by user42            #+#    #+#             */
-/*   Updated: 2022/01/12 18:00:14 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/20 15:22:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_take_fork_and_eat(t_thread *thread)
 {
+	pthread_mutex_lock(&thread->l_fork);
 	display_message("has taken the fork to his left\n", thread);
 	if (!thread->r_fork)
 	{
