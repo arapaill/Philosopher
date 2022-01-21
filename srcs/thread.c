@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:59:48 by user42            #+#    #+#             */
-/*   Updated: 2022/01/20 16:00:15 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/20 16:33:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	*thread(void *data)
 		pthread_create(&thread->thread_death, NULL, &ft_end, thread);
 		routine(thread);
 		pthread_detach(thread->thread_death);
-		if (check_death(thread, 0) && (int)++thread->nb_eat == thread->p_info->must_eat)
+		if (check_death(thread, 0) || (int)++thread->nb_eat == thread->p_info->must_eat)
 		{
 			pthread_mutex_lock(&thread->p_info->finish);
 			thread->end = 1;
 			thread->p_info->nb_finish++;
-			if (thread->p_info->nb_finish == thread->p_info->nb_total)
+			if (!check_death(thread, 0) && thread->p_info->nb_finish == thread->p_info->nb_total)
 			{
 				pthread_mutex_unlock(&thread->p_info->finish);
 				check_death(thread, 2);
