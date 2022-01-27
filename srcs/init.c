@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 12:06:21 by user42            #+#    #+#             */
-/*   Updated: 2022/01/20 15:54:07 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/27 17:55:17 by arapaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ int	init_thread(t_philo *philo)
 			return (ft_error("ERROR: pthread_create != 0\n"));
 		i++;
 	}
+	ft_end(philo);
 	return (1);
 }

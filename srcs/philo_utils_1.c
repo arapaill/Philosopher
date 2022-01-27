@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:21:52 by user42            #+#    #+#             */
-/*   Updated: 2022/01/20 15:36:29 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/27 18:30:56 by arapaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ void	ft_usleep(long int time, t_info *info)
 	start_time = 0;
 	start_time = get_time();
 	while (!info->dead && (get_time() - start_time) < time)
-		usleep(time / 10);
+		usleep(time);
 }

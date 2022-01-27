@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 10:41:34 by user42            #+#    #+#             */
-/*   Updated: 2022/01/20 15:28:49 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/27 18:01:12 by arapaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	display_message(char *msg, t_thread *thread)
 	time = -1;
 	time = get_time() - thread->p_info->start_t;
 	pthread_mutex_lock(&thread->p_info->write_mutex);
-	if (!check_death(thread, 0) && time >= 0 && time <= 2147483647)
-		printf("[%ld] Philo nb: %d %s ", time, thread->id, msg);
+	if (thread->p_info->dead != 1 && time >= 0 && time <= 2147483647)
+		printf("%ld %d %s", time, thread->id, msg);
 	pthread_mutex_unlock(&thread->p_info->write_mutex);
 }
 

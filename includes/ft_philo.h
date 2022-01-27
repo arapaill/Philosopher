@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:58:39 by user42            #+#    #+#             */
-/*   Updated: 2022/01/12 17:25:16 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/27 17:57:16 by arapaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_philo
 */
 
 int							ft_error(char *msg);
-void						ft_stop(t_philo *philo);
+void						ft_end(t_philo		*philo);
 
 /*
 ** Utils
@@ -97,5 +97,9 @@ void						routine(t_thread *thread);
 */
 
 void						*thread(void *data);
+void						ft_end(t_philo		*philo);
+
+
+void						ft_stop(t_philo *philo);
 
 #endif

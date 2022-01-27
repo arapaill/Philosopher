@@ -3,34 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:59:48 by user42            #+#    #+#             */
-/*   Updated: 2022/01/20 16:33:11 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/27 18:58:11 by arapaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
 
-void	*ft_end(void *data)
+void	ft_end(t_philo		*philo)
 {
-	t_thread		*thread;
+	int				i;
 
-	thread = (t_thread *)data;
-	ft_usleep(thread->p_info->time_to_die + 1, thread->p_info);
-	pthread_mutex_lock(&thread->p_info->eat_time);
-	pthread_mutex_lock(&thread->p_info->finish);
-	if (!check_death(thread, 0) && !thread->end
-		&& (get_time() - thread->ms_eat)
-		>= (long)(thread->p_info->time_to_die))
+	i = 0;
+	while (philo->info.dead == 0 && i < philo->info.nb_total)
 	{
-		display_message("died\n", thread);
-		check_death(thread, 1);
-		thread->p_info->dead = 1;
+		if (philo->info.dead == 0 && !philo->thread[i].end
+			&& (get_time() - philo->thread[i].ms_eat)
+			>= (long)(philo->info.time_to_die))
+		{
+			display_message("died\n", philo->thread);
+			philo->info.dead = 1;
+		}
+		i++;
+		if(i == philo->info.nb_total)
+			i = 0;
 	}
-	pthread_mutex_unlock(&thread->p_info->finish);
-	pthread_mutex_unlock(&thread->p_info->eat_time);
-	return (NULL);
 }
 
 void	*thread(void *data)
@@ -39,25 +38,7 @@ void	*thread(void *data)
 
 	thread = (t_thread *)data;
 	if (thread->id % 2 == 0)
-		ft_usleep(1, thread->p_info);
-	while (!check_death(thread, 0))
-	{
-		pthread_create(&thread->thread_death, NULL, &ft_end, thread);
-		routine(thread);
-		pthread_detach(thread->thread_death);
-		if (check_death(thread, 0) || (int)++thread->nb_eat == thread->p_info->must_eat)
-		{
-			pthread_mutex_lock(&thread->p_info->finish);
-			thread->end = 1;
-			thread->p_info->nb_finish++;
-			if (!check_death(thread, 0) && thread->p_info->nb_finish == thread->p_info->nb_total)
-			{
-				pthread_mutex_unlock(&thread->p_info->finish);
-				check_death(thread, 2);
-			}
-			pthread_mutex_unlock(&thread->p_info->finish);
-			return (NULL);
-		}
-	}
-	return (NULL);
+		ft_usleep(10, thread->p_info);
+	routine(thread);
+	return(NULL);
 }
