@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:59:48 by user42            #+#    #+#             */
-/*   Updated: 2022/01/27 18:58:11 by arapaill         ###   ########.fr       */
+/*   Updated: 2022/01/27 20:37:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_end(t_philo		*philo)
 			philo->info.dead = 1;
 		}
 		i++;
-		if(i == philo->info.nb_total)
+		if (i == philo->info.nb_total)
 			i = 0;
 	}
 }
@@ -40,5 +40,5 @@ void	*thread(void *data)
 	if (thread->id % 2 == 0)
 		ft_usleep(10, thread->p_info);
 	routine(thread);
-	return(NULL);
+	return (NULL);
 }

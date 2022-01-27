@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:29:27 by user42            #+#    #+#             */
-/*   Updated: 2022/01/27 19:00:27 by arapaill         ###   ########.fr       */
+/*   Updated: 2022/01/27 20:38:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_sleep(t_thread *thread)
 
 void	routine(t_thread *thread)
 {
-	//boucle att tout les philos
 	while (thread->p_info->dead == 0)
 	{
 		ft_take_fork_and_eat(thread);
@@ -48,10 +47,10 @@ void	routine(t_thread *thread)
 		{
 			thread->end = 1;
 			thread->p_info->nb_finish++;
-			if (!check_death(thread, 0) && thread->p_info->nb_finish == thread->p_info->nb_total)
+			if (!check_death(thread, 0)
+				&& thread->p_info->nb_finish == thread->p_info->nb_total)
 				check_death(thread, 2);
 			return ;
 		}
 	}
 }
-
