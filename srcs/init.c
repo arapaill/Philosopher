@@ -6,7 +6,7 @@
 /*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 12:06:21 by user42            #+#    #+#             */
-/*   Updated: 2022/01/27 17:55:17 by arapaill         ###   ########.fr       */
+/*   Updated: 2022/01/31 12:00:03 by arapaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	init_thread(t_philo *philo)
 	pthread_mutex_init(&philo->info.eat_time, NULL);
 	pthread_mutex_init(&philo->info.finish, NULL);
 	pthread_mutex_init(&philo->info.write_mutex, NULL);
+	pthread_mutex_init(&philo->info.nb_eat_mutex, NULL);
 	while (i < philo->info.nb_total)
 	{
 		philo->thread[i].p_info = &philo->info;

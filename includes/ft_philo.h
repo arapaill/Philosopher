@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arapaill <arapaill@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 09:58:39 by user42            #+#    #+#             */
-/*   Updated: 2022/01/27 20:36:52 by user42           ###   ########.fr       */
+/*   Updated: 2022/01/31 12:37:05 by arapaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_info
 	pthread_mutex_t			eat_time;
 	pthread_mutex_t			end;
 	pthread_mutex_t			write_mutex;
+	pthread_mutex_t			nb_eat_mutex;
 	int						nb_finish;
 	int						dead;
 }							t_info;
@@ -66,7 +67,7 @@ typedef struct s_philo
 */
 
 int							ft_error(char *msg);
-void						ft_end(t_philo		*philo);
+void						ft_end(t_philo *philo);
 
 /*
 ** Utils
@@ -76,6 +77,7 @@ int							ft_atoi(const char *str);
 long int					get_time(void);
 void						ft_usleep(long int time, t_info *info);
 int							check_death(t_thread *thread, int stop);
+int							check_death_info(t_info *info);
 void						display_message(char *msg, t_thread *thread);
 
 /*
@@ -97,7 +99,7 @@ void						routine(t_thread *thread);
 */
 
 void						*thread(void *data);
-void						ft_end(t_philo		*philo);
+void						ft_end(t_philo *philo);
 void						ft_stop(t_philo *philo);
 
 #endif
